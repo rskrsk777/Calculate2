@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         numberLabel = UILabel(frame: CGRect(x: 0, y: 100 + (self.navigationController?.navigationBar.frame.height)!, width: screenSize.width, height: 50))
         numberLabel.text = ""
+        numberLabel.font = UIFont.systemFont(ofSize: 30)
         numberLabel.layer.borderWidth = 2
         numberLabel.layer.borderColor = UIColor.white.cgColor
         numberLabel.backgroundColor = UIColor.gray

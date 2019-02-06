@@ -31,6 +31,7 @@ class OperatingInputViewController: UIViewController {
         
         operatingLabel = UILabel(frame: CGRect(x: 0, y: 100 + (self.navigationController?.navigationBar.frame.height)!, width: screenSize.width, height: 50))
         operatingLabel.text = operating
+        operatingLabel.font = UIFont.systemFont(ofSize: 30)
         operatingLabel.layer.borderWidth = 2
         operatingLabel.layer.borderColor = UIColor.white.cgColor
         operatingLabel.backgroundColor = UIColor.gray

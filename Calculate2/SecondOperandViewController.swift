@@ -1,5 +1,6 @@
 
 import UIKit
+import Expression
 
 class SecondOperandViewController: UIViewController {
 
@@ -38,6 +39,7 @@ class SecondOperandViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         formulaLabel = UILabel(frame: CGRect(x: 0, y: 100 + (self.navigationController?.navigationBar.frame.height)!, width: screenSize.width, height: 50))
         formulaLabel.text = formula
+        formulaLabel.font = UIFont.systemFont(ofSize: 30)
         formulaLabel.layer.borderWidth = 2
         formulaLabel.layer.borderColor = UIColor.white.cgColor
         formulaLabel.backgroundColor = UIColor.gray
@@ -114,8 +116,19 @@ class SecondOperandViewController: UIViewController {
             guard self.formulaLabel.text != "" else {
                 return
             }
-            let next = OperatingInputViewController(operating: self.formulaLabel.text!)
-            self.navigationController?.pushViewController(next, animated: true)
+            let expression = Expression(formulaLabel.text!)
+            do {
+                let result = try expression.evaluate()
+                print(result)
+                formulaLabel.text = "計算結果 : " + String(result)
+                calButton.setTitle("戻る", for: .normal)
+            } catch {
+                print("Error")
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        case "戻る":
+            self.navigationController?.popToRootViewController(animated: true)
+            
         default:
             print("default")
         }
